@@ -17,7 +17,7 @@ const Footer = () => {
                 <div className="grid grid-flow-col gap-6 text-3xl">
                     <FaFacebookF />
                     <FaTwitter />
-                    <FaGithub />
+                    {/* <FaGithub /> */}
                     <FaInstagram />
                 </div>
                 <p className="text-base mt-2">Copyright © 2025 - All right reserved</p>

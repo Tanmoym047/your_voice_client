@@ -9,6 +9,7 @@ import {
 } from "react-router-dom"
 import Root from "./components/Root/Root";
 import Error from "./components/Error/Error";
+import Home from "./components/Home/Home";
 
 
 const router = createBrowserRouter([
@@ -17,63 +18,63 @@ const router = createBrowserRouter([
     element: <Root></Root>,
     errorElement: <Error></Error>,
 
-    // children: [
-    //   {
-    //     path: "/",
-    //     element: <Home></Home>,
-    //   },
-    //   {
-    //     path: "/featuredblogs",
-    //     element: <FeaturedBlogs></FeaturedBlogs>,
-    //   },
-    //   {
-    //     path: "/login",
-    //     element: <Login></Login>,
-    //   },
-    //   {
-    //     path: "/register",
-    //     element: <Register></Register>,
-    //   },    
-    //   {
-    //     path: "/blogs/:id",
-    //     element:
-    //       <PrivateRoute>
-    //         <BlogDetails></BlogDetails>
-    //       </PrivateRoute>,
-    //     // loader: ({ params }) => fetch(`https://our-diary-server.vercel.app/allBlogs/${params.id}`)
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      // {
+      //   path: "/featuredblogs",
+      //   element: <FeaturedBlogs></FeaturedBlogs>,
+      // },
+      // {
+      //   path: "/login",
+      //   element: <Login></Login>,
+      // },
+      // {
+      //   path: "/register",
+      //   element: <Register></Register>,
+      // },    
+      // {
+      //   path: "/blogs/:id",
+      //   element:
+      //     <PrivateRoute>
+      //       <BlogDetails></BlogDetails>
+      //     </PrivateRoute>,
+      //   // loader: ({ params }) => fetch(`https://our-diary-server.vercel.app/allBlogs/${params.id}`)
 
-    //   },
-    //   {
-    //     path: "/allblogs",
-    //     element:
-    //       <AllBlogs></AllBlogs>,
+      // },
+      // {
+      //   path: "/allblogs",
+      //   element:
+      //     <AllBlogs></AllBlogs>,
 
-    //   },
+      // },
 
-    //   {
-    //     path: "/addblog",
-    //     element:
-    //       <PrivateRoute>
-    //         <AddBlogs></AddBlogs>
-    //       </PrivateRoute>,
-    //   },
-    //   {
-    //     path: "/update/:id",
-    //     element:
-    //       <PrivateRoute>
-    //         <UpdateBlogs></UpdateBlogs>
-    //       </PrivateRoute>,
-    //     // loader: ({ params }) => fetch(`https://our-diary-server.vercel.app/allBlogs/${params.id}`)
-    //   },
-    //   {
-    //     path: "/wishlist",
-    //     element:
-    //       <PrivateRoute>
-    //         <Wishlists></Wishlists>
-    //       </PrivateRoute>,
-    //   },
+      // {
+      //   path: "/addblog",
+      //   element:
+      //     <PrivateRoute>
+      //       <AddBlogs></AddBlogs>
+      //     </PrivateRoute>,
+      // },
+      // {
+      //   path: "/update/:id",
+      //   element:
+      //     <PrivateRoute>
+      //       <UpdateBlogs></UpdateBlogs>
+      //     </PrivateRoute>,
+      //   // loader: ({ params }) => fetch(`https://our-diary-server.vercel.app/allBlogs/${params.id}`)
+      // },
+      // {
+      //   path: "/wishlist",
+      //   element:
+      //     <PrivateRoute>
+      //       <Wishlists></Wishlists>
+      //     </PrivateRoute>,
+      // },
 
-    // ]
+    ]
   },
 ]);
 

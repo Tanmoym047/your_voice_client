@@ -4,13 +4,12 @@ const links = <>
     <li><a>All Blogs</a></li>
     <li><a>Add Blogs</a></li>
     <li><a>Featured Blogs</a></li>
-    <li><a>Wishlist</a></li>
 </>
 
 const Navbar = () => {
     return (
-        <div>
-            <div className="navbar bg-base-100 shadow-sm">
+        <div className=''>
+            <div className="navbar bg-base-100 shadow-sm ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,7 +23,7 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <a className="btn btn-ghost text-xl">Your Voice</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
