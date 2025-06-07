@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 const Navbar = () => {
-    // const {user, logout} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     // Dark, LIght theme
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light');
@@ -27,38 +27,44 @@ const Navbar = () => {
         }
     }
 
-    // const signOut = () => {
-    //     logOut()
-    //         .then(() => {
+    const signOut = () => {
+        logOut()
+            .then(() => {
 
-    //             Swal.fire({
-    //                 title: 'Success!',
-    //                 text: 'Successfully Logged Out',
-    //                 icon: 'success',
-    //                 confirmButtonText: 'OK'
-    //             })
-    //             axios.post('https://our-diary-server.vercel.app/logout')
-    //                 .then(res => {
-    //                     console.log(res.data)
-    //                     // if (res.data.success) {
-    //                     //     navigate(location?.state ? location?.state : '/')
-    //                     // }
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Successfully Logged Out',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                })
+                axios.post('https://our-diary-server.vercel.app/logout')
+                    .then(res => {
+                        console.log(res.data)
+                        // if (res.data.success) {
+                        //     navigate(location?.state ? location?.state : '/')
+                        // }
 
-    //                 })
-    //         })
-    //         .catch(error => {
-    //             console.error(error.message);
-    //             Swal.fire({
-    //                 title: 'Error!',
-    //                 text: error.message,
-    //                 icon: 'error',
-    //                 confirmButtonText: 'OK'
-    //             })
-    //         })
-    // }
+                    })
+            })
+            .catch(error => {
+                console.error(error.message);
+                Swal.fire({
+                    title: 'Error!',
+                    text: error.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                })
+            })
+    }
 
     const links = <>
-        <li><a>Home</a></li>
+        <li><NavLink style={({ isActive }) => {
+            return {
+                backgroundColor: isActive ? '#a50036' : 'white',
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? 'white' : 'black'
+            };
+        }} to='/'>Home</NavLink></li>
         <li><a>All Blogs</a></li>
         <li><a>Add Blogs</a></li>
         <li><a>Featured Blogs</a></li>
@@ -95,7 +101,9 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">Your Voice</a>
+                    <NavLink to='/' className="btn btn-ghost text-lg lg:text-xl">
+                        {/* <Lottie className="h-12 hidden md:inline-block" animationData={blog}></Lottie> */}
+                        Your Voice</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -106,9 +114,24 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                         <div className="space-x-2">
-                                <Link to='/login' ><button className="btn btn-sm lg:btn-md  bg-rose-800 text-white">Login</button></Link>
-                                <Link to='/register' ><button className="btn btn-sm lg:btn-md bg-rose-800 text-white">Register</button> </Link>
+                        (user) ?
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div data-tooltip-id="my-tooltip"
+                                        data-tooltip-content={user.displayName ? user.displayName : 'Please update your profile'}
+                                        className="w-10 rounded-full">
+                                        <img alt='image not available' src={user.photoURL} />
+
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+
+                                    <li onClick={signOut}><a>Logout</a></li>
+                                </ul>
+                            </div>
+                            : <div className="space-x-2">
+                                <Link to='/login' ><button className="btn btn-sm rounded-lg lg:btn-md  bg-rose-800 text-white">Login</button></Link>
+                                <Link to='/register' ><button className="btn btn-sm rounded-lg lg:btn-md bg-rose-800 text-white">Register</button> </Link>
                             </div>
                     }
                 </div>

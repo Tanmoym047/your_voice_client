@@ -6,7 +6,6 @@ import Footer from './Footer';
 const Root = () => {
     return (
         <div className="container mx-auto font-ubuntu">
-
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>

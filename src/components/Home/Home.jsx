@@ -5,6 +5,7 @@ import Newsletter from './Newsletter';
 const Home = () => {
     return (
         <div className='mt-6'>
+            
             <Slider></Slider>
             <Newsletter></Newsletter>
         </div>

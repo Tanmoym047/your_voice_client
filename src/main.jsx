@@ -12,6 +12,8 @@ import Error from "./components/Error/Error";
 import Home from "./components/Home/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthProvider from "./AuthProvider/AuthProvider";
+import Login from "./components/Authentication/Login";
+import Register from "./components/Authentication/Register";
 
 const queryClient = new QueryClient();
 
@@ -30,14 +32,14 @@ const router = createBrowserRouter([
       //   path: "/featuredblogs",
       //   element: <FeaturedBlogs></FeaturedBlogs>,
       // },
-      // {
-      //   path: "/login",
-      //   element: <Login></Login>,
-      // },
-      // {
-      //   path: "/register",
-      //   element: <Register></Register>,
-      // },    
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },    
       // {
       //   path: "/blogs/:id",
       //   element:
