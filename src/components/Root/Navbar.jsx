@@ -72,7 +72,13 @@ const Navbar = () => {
                 color: isActive ? 'white' : 'black'
             };
         }} to='/allblogs'>All Blogs</NavLink></li>
-        <li><a>Add Blogs</a></li>
+        <li><NavLink style={({ isActive }) => {
+            return {
+                backgroundColor: isActive ? '#a50036' : 'white',
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? 'white' : 'black'
+            };
+        }} to='/addblog'>Add Blogs</NavLink></li>
         <li><a>Featured Blogs</a></li>
         <li>
             <label className="swap swap-rotate">
@@ -93,6 +99,7 @@ const Navbar = () => {
 
     return (
         <div className=''>
+            <Tooltip id="my-tooltip" />
             <div className="navbar bg-base-100 shadow-sm ">
                 <div className="navbar-start">
                     <div className="dropdown">

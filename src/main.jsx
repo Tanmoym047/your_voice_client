@@ -17,6 +17,7 @@ import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 import BlogDetails from './components/Home/BlogDetails/BlogDetails.jsx';
 import AllBlogs from "./components/Blogs/AllBlogs.jsx";
+import AddBlogs from "./components/Blogs/AddBlogs.jsx";
 
 const queryClient = new QueryClient();
 
@@ -58,13 +59,13 @@ const router = createBrowserRouter([
           <AllBlogs></AllBlogs>,
       },
 
-      // {
-      //   path: "/addblog",
-      //   element:
-      //     <PrivateRoute>
-      //       <AddBlogs></AddBlogs>
-      //     </PrivateRoute>,
-      // },
+      {
+        path: "/addblog",
+        element:
+          <PrivateRoute>
+            <AddBlogs></AddBlogs>
+          </PrivateRoute>,
+      },
       // {
       //   path: "/update/:id",
       //   element:
