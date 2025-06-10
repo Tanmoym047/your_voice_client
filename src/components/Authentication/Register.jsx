@@ -102,6 +102,7 @@ const Register = () => {
     return (
 
         <div className="hero rounded-2xl mb-4">
+            <title>Your Voice | Register</title>
             <div className="hero-content flex-col h-full">
                 <div className="text-center ">
                     <h1 className="text-2xl lg:text-5xl text-rose-800 font-bold animate__animated animate__backInUp">Register now!</h1>
@@ -131,14 +132,14 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <div className="relative">
+                            <div className="">
                                 <input {...register('password')} type={showPass ? 'text' : 'password'} placeholder="Password" className="input input-bordered w-full" />
-                                <button type="button" onClick={showPassword} className="btn btn-ghost absolute right-0"><FaEye /></button>
+                                
                             </div>
 
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn bg-rose-800 text-white">Register</button>
+                            <button className="btn bg-rose-800 text-white w-full">Register</button>
                         </div>
                         <div className="form-control mt-6 text-center">
                             Already have an account? Please <Link to='/login' className="text-rose-800 underline">Login</Link>

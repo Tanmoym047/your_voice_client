@@ -155,6 +155,7 @@ const Login = () => {
 
     return (
         <div className="hero rounded-2xl mb-4">
+            <title>Your Voice | Login</title>
             <div className="hero-content flex-col h-full">
                 <div className="text-center ">
                     <h1 className="text-2xl lg:text-5xl text-rose-800 font-bold animate__animated animate__backInUp">Login now!</h1>
@@ -180,7 +181,7 @@ const Login = () => {
 
                         </div>
                         <div className="form-control mt-6  space-y-4">
-                            <button className="btn bg-rose-800 text-white">Login</button>
+                            <button className="btn bg-rose-800 text-white w-full">Login</button>
 
                         </div>
 
