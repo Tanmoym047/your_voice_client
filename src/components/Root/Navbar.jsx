@@ -65,7 +65,13 @@ const Navbar = () => {
                 color: isActive ? 'white' : 'black'
             };
         }} to='/'>Home</NavLink></li>
-        <li><a>All Blogs</a></li>
+        <li><NavLink style={({ isActive }) => {
+            return {
+                backgroundColor: isActive ? '#a50036' : 'white',
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? 'white' : 'black'
+            };
+        }} to='/allblogs'>All Blogs</NavLink></li>
         <li><a>Add Blogs</a></li>
         <li><a>Featured Blogs</a></li>
         <li>

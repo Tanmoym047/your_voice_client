@@ -16,6 +16,7 @@ import PrivateRoute from "./AuthProvider/PrivateRoute";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 import BlogDetails from './components/Home/BlogDetails/BlogDetails.jsx';
+import AllBlogs from "./components/Blogs/AllBlogs.jsx";
 
 const queryClient = new QueryClient();
 
@@ -51,12 +52,11 @@ const router = createBrowserRouter([
         // loader: ({ params }) => fetch(`https://our-diary-server.vercel.app/allBlogs/${params.id}`)
 
       },
-      // {
-      //   path: "/allblogs",
-      //   element:
-      //     <AllBlogs></AllBlogs>,
-
-      // },
+      {
+        path: "/allblogs",
+        element:
+          <AllBlogs></AllBlogs>,
+      },
 
       // {
       //   path: "/addblog",
