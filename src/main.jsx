@@ -12,8 +12,10 @@ import Error from "./components/Error/Error";
 import Home from "./components/Home/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthProvider from "./AuthProvider/AuthProvider";
+import PrivateRoute from "./AuthProvider/PrivateRoute";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
+import BlogDetails from './components/Home/BlogDetails/BlogDetails.jsx';
 
 const queryClient = new QueryClient();
 
@@ -40,15 +42,15 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },    
-      // {
-      //   path: "/blogs/:id",
-      //   element:
-      //     <PrivateRoute>
-      //       <BlogDetails></BlogDetails>
-      //     </PrivateRoute>,
-      //   // loader: ({ params }) => fetch(`https://our-diary-server.vercel.app/allBlogs/${params.id}`)
+      {
+        path: "/blogs/:id",
+        element:
+          <PrivateRoute>
+            <BlogDetails></BlogDetails>
+          </PrivateRoute>,
+        // loader: ({ params }) => fetch(`https://our-diary-server.vercel.app/allBlogs/${params.id}`)
 
-      // },
+      },
       // {
       //   path: "/allblogs",
       //   element:
