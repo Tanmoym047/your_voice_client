@@ -58,21 +58,21 @@ const Navbar = () => {
     }
 
     const links = <>
-        <li><NavLink style={({ isActive }) => {
+        <li className='p-1'><NavLink style={({ isActive }) => {
             return {
                 backgroundColor: isActive ? '#a50036' : 'white',
                 fontWeight: isActive ? "bold" : "",
                 color: isActive ? 'white' : 'black'
             };
         }} to='/'>Home</NavLink></li>
-        <li><NavLink style={({ isActive }) => {
+        <li className='p-1'><NavLink style={({ isActive }) => {
             return {
                 backgroundColor: isActive ? '#a50036' : 'white',
                 fontWeight: isActive ? "bold" : "",
                 color: isActive ? 'white' : 'black'
             };
         }} to='/allblogs'>All Blogs</NavLink></li>
-        <li><NavLink style={({ isActive }) => {
+        <li className='p-1'><NavLink style={({ isActive }) => {
             return {
                 backgroundColor: isActive ? '#a50036' : 'white',
                 fontWeight: isActive ? "bold" : "",
@@ -119,7 +119,7 @@ const Navbar = () => {
                         Your Voice</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu menu-horizontal mx-6">
                         {
                             links
                         }

@@ -52,11 +52,11 @@ const AddBlogs = () => {
 
             <div className="hero-content flex-col h-full  w-full">
                 <div className="text-center ">
-                    <h1 className="text-2xl lg:text-5xl text-blue-700 font-bold animate__animated animate__backInUp">Add Blog</h1>
+                    <h1 className="text-2xl lg:text-5xl text-rose-800 font-bold animate__animated animate__backInUp">Add Blog</h1>
                     <p className="py-6">Add your own Blog.</p>
                 </div>
                 <div className="card shrink-0 w-full shadow-2xl bg-base-100">
-                    <form onSubmit={handleSubmit(onSubmit)} className="card-body space-y-3">
+                    <form onSubmit={handleSubmit(onSubmit)} className="card-body space-y-3 mx-auto">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Image URL</span>
@@ -72,7 +72,7 @@ const AddBlogs = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Category</span>
+                                <span className="label-text p-2">Category</span>
                             </label>
                             <select className='border space-y-2 h-32 text-lg p-2' id="cars" name="cars" size="4"  {...register('category')}>
                                 <option value="Health & Fitness">Health & Fitness</option>
@@ -106,11 +106,14 @@ const AddBlogs = () => {
                         </div>
 
                         <div className="form-control mt-6  space-y-4">
-                            <button className="btn bg-blue-700 text-white">Add</button>
+                            <button className="btn bg-rose-800 text-white">Add</button>
 
                         </div>
 
                     </form>
+
+
+                    
 
                 </div>
             </div>
