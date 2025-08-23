@@ -30,7 +30,7 @@ const AddBlogs = () => {
         //     body: JSON.stringify(data)
         // })
 
-        axios.post('https://our-diary-server.vercel.app/addblogs', data)
+        axios.post('http://localhost:5000/addblogs', data)
 
             .then(res => {
                 console.log('added', res.data);

@@ -11,7 +11,7 @@ const RecentBlogs = () => {
     const { data, isLoading } = new useQuery({
         queryKey: ["recent"],
         queryFn: async () => {
-            const res = await axios.get(`https://our-diary-server.vercel.app/recent/`)
+            const res = await axios.get(`http://localhost:5000/recent/`)
 
             console.log(res.data);
             return res.data;

@@ -18,6 +18,7 @@ import Register from "./components/Authentication/Register";
 import BlogDetails from './components/Home/BlogDetails/BlogDetails.jsx';
 import AllBlogs from "./components/Blogs/AllBlogs.jsx";
 import AddBlogs from "./components/Blogs/AddBlogs.jsx";
+import UpdateBlogs from "./components/Blogs/UpdateBlogs.jsx";
 
 const queryClient = new QueryClient();
 
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <BlogDetails></BlogDetails>
           </PrivateRoute>,
-        // loader: ({ params }) => fetch(`https://our-diary-server.vercel.app/allBlogs/${params.id}`)
+        // loader: ({ params }) => fetch(`http://localhost:5000/allBlogs/${params.id}`)
 
       },
       {
@@ -66,14 +67,14 @@ const router = createBrowserRouter([
             <AddBlogs></AddBlogs>
           </PrivateRoute>,
       },
-      // {
-      //   path: "/update/:id",
-      //   element:
-      //     <PrivateRoute>
-      //       <UpdateBlogs></UpdateBlogs>
-      //     </PrivateRoute>,
-      //   // loader: ({ params }) => fetch(`https://our-diary-server.vercel.app/allBlogs/${params.id}`)
-      // },
+      {
+        path: "/update/:id",
+        element:
+          <PrivateRoute>
+            <UpdateBlogs></UpdateBlogs>
+          </PrivateRoute>,
+        // loader: ({ params }) => fetch(`http://localhost:5000/allBlogs/${params.id}`)
+      },
       // {
       //   path: "/wishlist",
       //   element:

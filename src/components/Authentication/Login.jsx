@@ -46,7 +46,7 @@ const Login = () => {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 })
-                axios.post('https://our-diary-server.vercel.app/jwt', data, {
+                axios.post('http://localhost:5000/jwt', data, {
                     withCredentials: true
                 })
                     .then(res => {
@@ -107,7 +107,7 @@ const Login = () => {
                         confirmButtonText: 'OK'
                     })
                     // get access token
-                    axios.post('https://our-diary-server.vercel.app/jwt', data, {
+                    axios.post('http://localhost:5000/jwt', data, {
                         withCredentials: true
                     })
                         .then(res => {

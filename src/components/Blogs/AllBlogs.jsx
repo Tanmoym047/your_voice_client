@@ -6,7 +6,7 @@ import axios from 'axios';
 const AllBlogs = () => {
     const handleClick = (category) => {
         console.log(category);
-        axios.get(`https://our-diary-server.vercel.app/filter?filter=${category}`)
+        axios.get(`http://localhost:5000/filter?filter=${category}`)
             .then(res => {
                 console.log(res.data);
                 setRecentBlogs(res.data)
@@ -26,7 +26,7 @@ const AllBlogs = () => {
 
     const [recentBlogs, setRecentBlogs] = useState([]);
     useEffect(() => {
-        axios.get('https://our-diary-server.vercel.app/allBlogs')
+        axios.get('http://localhost:5000/allBlogs')
             .then(res => setRecentBlogs(res.data))
 
     }, [])
@@ -42,7 +42,7 @@ const AllBlogs = () => {
         const { title } = data;
         console.log(title);
 
-        axios.get(`https://our-diary-server.vercel.app/search?title=${title}`)
+        axios.get(`http://localhost:5000/search?title=${title}`)
             .then(res => setRecentBlogs(res.data))
 
     }

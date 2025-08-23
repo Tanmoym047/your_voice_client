@@ -27,7 +27,7 @@ const BlogDetails = () => {
         data.time = Date();
         console.log(data);
 
-        axios.put(`https://our-diary-server.vercel.app/addcomment/${_id}`, data)
+        axios.put(`http://localhost:5000/addcomment/${_id}`, data)
             .then(res => {
                 console.log(res.data);
 
@@ -44,7 +44,7 @@ const BlogDetails = () => {
     const { data, isLoading, refetch } = new useQuery({
         queryKey: ["comment"],
         queryFn: async () => {
-            const res = await axios.get(`https://our-diary-server.vercel.app/allBlogs/${param.id}`, {
+            const res = await axios.get(`http://localhost:5000/allBlogs/${param.id}`, {
                 withCredentials: true
             })
             console.log(res.data);

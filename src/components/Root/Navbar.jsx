@@ -37,7 +37,7 @@ const Navbar = () => {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 })
-                axios.post('https://our-diary-server.vercel.app/logout')
+                axios.post('http://localhost:5000/logout')
                     .then(res => {
                         console.log(res.data)
                         // if (res.data.success) {
