@@ -39,10 +39,10 @@ const UpdateBlogs = () => {
     const param = useParams();
     console.log(param.id);
 
-    const { data, isLoading, refetch } = new useQuery({
-        queryKey: ["update"],
+    const { data, isLoading, refetch } = useQuery({
+        queryKey: ["update", param.id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/allBlogs/${param.id}`)
+            const res = await axios.get(`http://localhost:5000/allBlogs/${param.id}`, { withCredentials: true })
             console.log(res.data);
             return res.data;
         }
@@ -59,6 +59,7 @@ const UpdateBlogs = () => {
                 icon: 'success',
                 confirmButtonText: 'Cool'
             })
+            reset();
             refetch();
         }
     })
