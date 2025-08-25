@@ -35,12 +35,12 @@ const Chatbot = () => {
     return (
         <div className="min-h-1/2 flex items-center justify-center p-4 sm:p-8 font-sans text-gray-200">
             <title>Your Voice | ChatBot</title>
-            <div className="w-full max-w-2xl bg-slate-800 rounded-3xl shadow-xl border border-slate-700 p-6 sm:p-10 flex flex-col items-center animate-fade-in">
+            <div className="w-full max-w-2xl bg-base-content rounded-3xl shadow-xl border border-slate-700 p-6 sm:p-10 flex flex-col items-center animate-fade-in">
 
-                <h1 className="text-3xl sm:text-3xl font-extrabold text-white text-center mb-2 leading-tight tracking-wide">
+                <h1 className="text-3xl sm:text-3xl font-extrabold text-gray-500 text-center mb-2 leading-tight tracking-wide">
                     <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-800 to-rose-500">Your Voice</span> Chatbot
                 </h1>
-                <p className="text-center text-slate-400 mb-8 max-w-md text-sm sm:text-base">
+                <p className="text-center text-gray-500 mb-8 max-w-md text-sm sm:text-base font-bold">
                     Use it to help post your blog
                 </p>
 

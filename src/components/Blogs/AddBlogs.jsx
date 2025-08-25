@@ -134,7 +134,7 @@ const AddBlogs = () => {
                             <textarea
                                 {...register('short_description', { required: true })}
                                 placeholder="A brief summary of your blog post"
-                                className="textarea textarea-bordered h-24 w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                className="textarea textarea-bordered h-20 w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                             ></textarea>
                             {errors.short_description && <span className="text-red-500 text-sm mt-1">Short Description is required</span>}
                         </div>
@@ -147,7 +147,7 @@ const AddBlogs = () => {
                             <textarea
                                 {...register('long_description', { required: true })}
                                 placeholder="Write the full content of your blog post here"
-                                className="textarea textarea-bordered h-48 w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                className="textarea textarea-bordered h-24 w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                             ></textarea>
                             {errors.long_description && <span className="text-red-500 text-sm mt-1">Long Description is required</span>}
                         </div>

@@ -31,8 +31,8 @@ const RecentBlog = ({ recentBlog }) => {
     }
 
     return (
-        <div className="card bg-base-100 shadow-xl" data-aos="fade-up" data-aos-duration="700">
-            <figure className=" "><img className="lg:h-[450px] rounded-xl" src={blogImage} alt="" /></figure>
+        <div className="card bg-base-100 shadow-xl max-h-[600px]" data-aos="fade-up" data-aos-duration="700">
+            <figure className=" "><img className="lg:h-[300px] rounded-xl" src={blogImage} alt="" /></figure>
             <div className="card-body space-y-3">
                 <div className="flex justify-between border-b pb-4">
                     <div className="space-y-2">
