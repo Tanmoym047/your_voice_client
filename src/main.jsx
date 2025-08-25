@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import './index.css'
-import App from "./app";
 
 import {
   createBrowserRouter,
@@ -20,6 +19,7 @@ import AllBlogs from "./components/Blogs/AllBlogs.jsx";
 import AddBlogs from "./components/Blogs/AddBlogs.jsx";
 import UpdateBlogs from "./components/Blogs/UpdateBlogs.jsx";
 import Chatbot from "./components/Chatbot/Chatbot.jsx";
+import FeaturedBlogs from "./components/Blogs/FeaturedBlogs.jsx";
 
 const queryClient = new QueryClient();
 
@@ -34,10 +34,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-      // {
-      //   path: "/featuredblogs",
-      //   element: <FeaturedBlogs></FeaturedBlogs>,
-      // },
+      {
+        path: "/featuredblogs",
+        element: <FeaturedBlogs></FeaturedBlogs>
+      },
       {
         path: "/login",
         element: <Login></Login>,

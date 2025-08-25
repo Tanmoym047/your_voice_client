@@ -83,11 +83,11 @@ const UpdateBlogs = () => {
 
 
     return (
-        <div className="flex justify-center items-center py-10 bg-base-content rounded-2xl transition-colors duration-300">
+        <div className="flex justify-center items-center py-10 bg-base-content rounded-2xl transition-colors duration-300 m-6">
             <title>Your Voice | Update</title>
             <div className="container max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
                 <div className="text-center mb-10">
-                    <h1 className="text-3xl lg:text-5xl font-bold text-rose-800 animate__animated animate__backInUp">
+                    <h1 className="text-3xl lg:text-5xl font-bold text-rose-700 animate__animated animate__backInUp">
                         Update Blog - {title}
                     </h1>
                     <p className="mt-4 text-gray-500 font-bold">

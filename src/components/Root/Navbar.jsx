@@ -88,7 +88,13 @@ const Navbar = () => {
                 color: isActive ? 'white' : 'black'
             };
         }} to='/chatbot'>ChatBot</NavLink></li>}
-        <li><a>Featured Blogs</a></li>
+        <li className='p-1'><NavLink style={({ isActive }) => {
+            return {
+                backgroundColor: isActive ? '#a50036' : 'white',
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? 'white' : 'black'
+            };
+        }} to='/featuredblogs'>Featured Blogs</NavLink></li>
         <li>
             <label className="swap swap-rotate">
 
