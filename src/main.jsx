@@ -19,6 +19,7 @@ import BlogDetails from './components/Home/BlogDetails/BlogDetails.jsx';
 import AllBlogs from "./components/Blogs/AllBlogs.jsx";
 import AddBlogs from "./components/Blogs/AddBlogs.jsx";
 import UpdateBlogs from "./components/Blogs/UpdateBlogs.jsx";
+import Chatbot from "./components/Chatbot/Chatbot.jsx";
 
 const queryClient = new QueryClient();
 
@@ -51,8 +52,7 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <BlogDetails></BlogDetails>
           </PrivateRoute>,
-        // loader: ({ params }) => fetch(`http://localhost:5000/allBlogs/${params.id}`)
-
+        
       },
       {
         path: "/allblogs",
@@ -73,15 +73,15 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <UpdateBlogs></UpdateBlogs>
           </PrivateRoute>,
-        // loader: ({ params }) => fetch(`http://localhost:5000/allBlogs/${params.id}`)
+        
       },
-      // {
-      //   path: "/wishlist",
-      //   element:
-      //     <PrivateRoute>
-      //       <Wishlists></Wishlists>
-      //     </PrivateRoute>,
-      // },
+      {
+        path: "/chatbot",
+        element:
+          <PrivateRoute>
+            <Chatbot></Chatbot>
+          </PrivateRoute>,
+      },
 
     ]
   },

@@ -3,11 +3,14 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
+
 const UpdateBlogs = () => {
+    const navigate = useNavigate();
+
     const queryClient = useQueryClient();
     const {
         register,
@@ -36,6 +39,7 @@ const UpdateBlogs = () => {
     const { user } = useContext(AuthContext);
 
 
+
     const param = useParams();
     console.log(param.id);
 
@@ -50,6 +54,8 @@ const UpdateBlogs = () => {
 
     const { mutateAsync } = useMutation({
 
+
+
         mutationFn: onSubmitData,
         onSuccess: () => {
             queryClient.invalidateQueries(["update"])
@@ -61,6 +67,7 @@ const UpdateBlogs = () => {
             })
             reset();
             refetch();
+            navigate(`/blogs/${param.id}`);
         }
     })
 
@@ -81,7 +88,7 @@ const UpdateBlogs = () => {
             <title>Our Diary | Update Blogs {_id} </title>
             <div className="hero-content flex-col h-full  w-full">
                 <div className="text-center ">
-                    <h1 className="text-2xl lg:text-5xl text-blue-700 font-bold animate__animated animate__backInUp">Update Blog - {title}</h1>
+                    <h1 className="text-2xl lg:text-5xl text-rose-800 font-bold animate__animated animate__backInUp">Update Blog - {title}</h1>
 
                 </div>
                 <div className="card shrink-0 w-full shadow-2xl bg-base-100">
