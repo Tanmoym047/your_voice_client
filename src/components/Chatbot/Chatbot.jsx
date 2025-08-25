@@ -34,6 +34,7 @@ const Chatbot = () => {
 
     return (
         <div className="min-h-1/2 flex items-center justify-center p-4 sm:p-8 font-sans text-gray-200">
+            <title>Your Voice | ChatBot</title>
             <div className="w-full max-w-2xl bg-slate-800 rounded-3xl shadow-xl border border-slate-700 p-6 sm:p-10 flex flex-col items-center animate-fade-in">
 
                 <h1 className="text-3xl sm:text-3xl font-extrabold text-white text-center mb-2 leading-tight tracking-wide">
@@ -56,7 +57,7 @@ const Chatbot = () => {
                     <button
                         type="submit"
                         className="btn w-full font-bold py-3 rounded-xl text-md transition-all duration-300 transform hover:scale-105
-                       bg-rose-800 shadow-lg hover:shadow-xl hover:shadow-rose-500/30"
+                       bg-rose-800 shadow-lg hover:shadow-xl hover:shadow-rose-500/30 text-white"
                         disabled={loading}
                     >
                         {loading ? (
@@ -78,8 +79,8 @@ const Chatbot = () => {
 
                     {response && !loading && (
 
-                        <div className="card w-full bg-slate-700 shadow-lg border border-slate-600 mt-6 rounded-xl animate-fade-in-up">
-                            <div className="card-body p-6">
+                        <div className="card w-full bg-slate-700 shadow-lg border border-slate-600 mt-2 rounded-xl animate-fade-in-up">
+                            <div className="card-body p-2">
                                 <h2 className="card-title text-2xl mb-4 text-rose-700 font-bold border-b border-rose-500/50 pb-2">Response</h2>
 
                                 <p className="whitespace-pre-wrap text-gray-300 leading-relaxed text-base">{response}</p>

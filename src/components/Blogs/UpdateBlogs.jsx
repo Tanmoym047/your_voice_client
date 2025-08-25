@@ -112,6 +112,7 @@ const UpdateBlogs = () => {
                             </label>
                             <select defaultValue={category} className='border space-y-2 h-32 text-lg p-2' id="cars" name="cars" size="4"  {...register('category')}>
                                 <option value="Health & Fitness">Health & Fitness</option>
+                                <option value="Gaming" className="bg-gray-100 dark:bg-gray-800">Gaming</option>
                                 <option value="Travel">Travel</option>
                                 <option value="Nutrition">Nutrition</option>
                                 <option value="Productivity">Productivity</option>
@@ -142,7 +143,7 @@ const UpdateBlogs = () => {
                         </div>
 
                         <div className="form-control mt-6  space-y-4">
-                            <button className="btn bg-blue-700 text-white">Update</button>
+                            <button className="btn bg-rose-800 text-white">Update</button>
 
                         </div>
 

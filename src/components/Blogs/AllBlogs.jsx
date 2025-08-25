@@ -49,7 +49,7 @@ const AllBlogs = () => {
 
     return (
         <div className='mt-12 lg:mt-20'>
-            <title>Our Diary | All Blogs</title>
+            <title>Your Voice | All Blogs</title>
 
             <div className='space-y-4 mb-10 text-center'>
                 <h2 className='text-2xl lg:text-4xl font-bold'>All Blogs</h2>
