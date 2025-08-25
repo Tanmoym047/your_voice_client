@@ -2,7 +2,7 @@ import { FaFacebookF, FaTwitter, FaGithub, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="mt-6 footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10">
+        <footer className="mt-6 footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-8">
 
             < aside className="space-y-1 px-4">
 

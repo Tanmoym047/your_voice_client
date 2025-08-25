@@ -36,30 +36,27 @@ const Chatbot = () => {
         <div className="min-h-1/2 flex items-center justify-center p-4 sm:p-8 font-sans text-gray-200">
             <div className="w-full max-w-2xl bg-slate-800 rounded-3xl shadow-xl border border-slate-700 p-6 sm:p-10 flex flex-col items-center animate-fade-in">
 
-                <h1 className="text-4xl sm:text-5xl font-extrabold text-white text-center mb-2 leading-tight tracking-wide">
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">Your Voice</span> Chatbot
+                <h1 className="text-3xl sm:text-3xl font-extrabold text-white text-center mb-2 leading-tight tracking-wide">
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-800 to-rose-500">Your Voice</span> Chatbot
                 </h1>
                 <p className="text-center text-slate-400 mb-8 max-w-md text-sm sm:text-base">
-                    Let your creativity flow. Enter a prompt below and get an instant AI response.
+                    Use it to help post your blog
                 </p>
 
                 <form onSubmit={handleSubmit} className="w-full mb-8">
-                    <label htmlFor="prompt" className="block text-slate-300 font-semibold mb-2">
-                        Your Prompt
-                    </label>
+
                     <textarea
                         id="prompt"
-                        className="textarea w-full resize-y min-h-[150px] mb-4 bg-slate-700 text-white border-slate-600 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder-slate-500"
-                        placeholder="e.g., Describe a futuristic city made entirely of glass and light, where floating gardens are a common sight."
+                        className="textarea w-full resize-y min-h-16 mb-4 bg-slate-600 text-base border-slate-600 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 "
+                        placeholder="Ask anything"
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)}
                     />
 
                     <button
                         type="submit"
-                        className="btn w-full font-bold py-3 rounded-xl text-lg transition-all duration-300 transform hover:scale-105
-                       bg-gradient-to-r from-indigo-600 to-purple-600 text-white border-none
-                       hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl hover:shadow-purple-500/30"
+                        className="btn w-full font-bold py-3 rounded-xl text-md transition-all duration-300 transform hover:scale-105
+                       bg-rose-800 shadow-lg hover:shadow-xl hover:shadow-rose-500/30"
                         disabled={loading}
                     >
                         {loading ? (
@@ -83,7 +80,7 @@ const Chatbot = () => {
 
                         <div className="card w-full bg-slate-700 shadow-lg border border-slate-600 mt-6 rounded-xl animate-fade-in-up">
                             <div className="card-body p-6">
-                                <h2 className="card-title text-2xl mb-4 text-purple-400 font-bold border-b border-purple-500/50 pb-2">AI Response</h2>
+                                <h2 className="card-title text-2xl mb-4 text-rose-700 font-bold border-b border-rose-500/50 pb-2">Response</h2>
 
                                 <p className="whitespace-pre-wrap text-gray-300 leading-relaxed text-base">{response}</p>
                             </div>
