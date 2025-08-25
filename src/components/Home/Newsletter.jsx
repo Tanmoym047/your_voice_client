@@ -15,8 +15,16 @@ const Newsletter = () => {
         if (email) {
             Swal.fire({
                 title: 'Thanks!',
-                text: 'Thank you for subscribing to our  newsletter',
+                text: 'Thank you for subscribing to our newsletter',
                 icon: 'success',
+                confirmButtonText: 'OK'
+            })
+        }
+        else {
+            Swal.fire({
+                title: 'Error!',
+                text: "Enter Correct Email",
+                icon: 'error',
                 confirmButtonText: 'OK'
             })
         }
