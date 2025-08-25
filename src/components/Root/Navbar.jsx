@@ -4,6 +4,8 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Tooltip } from 'react-tooltip'
 import Swal from 'sweetalert2'
 import axios from "axios";
+import Lottie from "lottie-react";
+import blog from '../../assets/blog.json'
 
 
 const Navbar = () => {
@@ -121,8 +123,8 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <NavLink to='/' className="btn btn-ghost text-lg lg:text-xl">
-                        {/* <Lottie className="h-12 hidden md:inline-block" animationData={blog}></Lottie> */}
+                    <NavLink to='/' className="btn btn-ghost text-lg lg:text-xl bg-clip-text text-transparent bg-gradient-to-r from-rose-800 to-rose-500">
+                        <Lottie className="h-8 hidden md:inline-block" animationData={blog}></Lottie>
                         Your Voice</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex">
