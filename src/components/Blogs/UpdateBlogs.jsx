@@ -57,7 +57,6 @@ const UpdateBlogs = () => {
             const updatedBlogData = {
                 ...formData,
                 email: user.email,
-                poster: user.displayName,
                 posterImage: user.photoURL,
                 time: new Date(),
                 blogImage: blogImageToUpdate,
@@ -130,7 +129,7 @@ const UpdateBlogs = () => {
                                     className="input input-bordered w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                 />
                             </div>
-                            
+
                             {/* New Image Input */}
                             <div className="form-control">
                                 <label className="label">
@@ -165,13 +164,13 @@ const UpdateBlogs = () => {
                                     <span className="label-text dark:text-gray-200">Category</span>
                                 </label>
                                 <select
+                                    defaultValue={category}
                                     {...register('category', { required: true })}
                                     className="select select-bordered w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                 >
                                     <option value="" className="bg-gray-100 dark:bg-gray-800">Select a category</option>
                                     <option value="Health & Fitness" className="bg-gray-100 dark:bg-gray-800">Health & Fitness</option>
                                     <option value="Gaming" className="bg-gray-100 dark:bg-gray-800">Gaming</option>
-                                    
                                     <option value="Travel" className="bg-gray-100 dark:bg-gray-800">Travel</option>
                                     <option value="Nutrition" className="bg-gray-100 dark:bg-gray-800">Nutrition</option>
                                     <option value="Productivity" className="bg-gray-100 dark:bg-gray-800">Productivity</option>
@@ -183,7 +182,7 @@ const UpdateBlogs = () => {
                             </div>
 
                             {/* User Name */}
-                            <div className="form-control">
+                            <div className="form-control md:col-span-2">
                                 <label className="label">
                                     <span className="label-text dark:text-gray-200">Your Name</span>
                                 </label>
