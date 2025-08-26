@@ -25,8 +25,7 @@ const UpdateBlogs = () => {
         data.name = user.displayName;
         data._id = _id;
         data.image = user.photoURL;
-
-        data.time = Date();
+        data.time = new Date();;
         console.log(data);
 
         axios.put(`http://localhost:5000/update/${_id}`, data, { withCredentials: true })
@@ -37,9 +36,7 @@ const UpdateBlogs = () => {
     }
 
     const { user } = useContext(AuthContext);
-
-
-
+    
     const param = useParams();
     console.log(param.id);
 
@@ -53,9 +50,6 @@ const UpdateBlogs = () => {
     })
 
     const { mutateAsync } = useMutation({
-
-
-
         mutationFn: onSubmitData,
         onSuccess: () => {
             queryClient.invalidateQueries(["update"])

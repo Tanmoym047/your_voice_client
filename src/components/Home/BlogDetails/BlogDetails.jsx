@@ -62,7 +62,7 @@ const BlogDetails = () => {
         data._id = _id;
         data.image = user.photoURL;
 
-        data.time = Date();
+        data.time = new Date();
         console.log(data);
 
         axios.put(`http://localhost:5000/addcomment/${_id}`, data, { withCredentials: true })

@@ -19,7 +19,7 @@ const AddBlogs = () => {
     const onSubmit = (data) => {
         data.email = user.email;
         data.posterImage = user.photoURL;
-        data.time = Date();
+        data.time = new Date();
         console.log(data);
 
         // fetch('https://access-world-server.vercel.app/tourist', {
