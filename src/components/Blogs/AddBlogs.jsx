@@ -1,9 +1,12 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 // import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddBlogs = () => {
     const {
@@ -15,34 +18,62 @@ const AddBlogs = () => {
     } = useForm();
 
     const { user } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const onSubmit = (data) => {
-        data.email = user.email;
-        data.posterImage = user.photoURL;
-        data.time = new Date();
-        console.log(data);
+    const onSubmit = async (data) => {
+        setIsLoading(true);
+        try {
+            data.email = user.email;
+            data.posterImage = user.photoURL;
+            data.time = new Date();
 
-        axios.post('http://localhost:5000/addblogs', data)
-
-            .then(res => {
-                console.log('added', res.data);
-                if (res.data.insertedId) {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Blog Added successfully',
-                        icon: 'success',
-                        confirmButtonText: 'Cool'
-                    })
+            const imageFile = { image: data.blogImage[0] };
+            const res = await axios.post(image_hosting_api, imageFile, {
+                headers: {
+                    'content-type': 'multipart/form-data'
                 }
             });
-        reset();
-    }
+
+            if (res.data.success) {
+                data.blogImage = res.data.data.display_url;
+            }
+
+            const blogRes = await axios.post('http://localhost:5000/addblogs', data);
+
+            if (blogRes.data.insertedId) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Blog Added successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                });
+                reset();
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to add blog. Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        } catch (error) {
+            console.error("Error adding blog:", error);
+            Swal.fire({
+                title: 'Error!',
+                text: 'Failed to add blog. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <div className="flex justify-center items-center py-10 bg-base-content rounded-2xl transition-colors duration-300 m-6">
             <div className="container max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
                 <div className="text-center mb-10">
-                    <h1 className="text-3xl lg:text-5xl font-bold text-rose-700  animate__animated animate__backInUp">
+                    <h1 className="text-3xl lg:text-5xl font-bold text-rose-700  animate__animated animate__backInUp">
                         Add a New Blog
                     </h1>
                     <p className="mt-4 text-white dark:text-gray-500 font-bold">
@@ -57,14 +88,9 @@ const AddBlogs = () => {
                             {/* Blog Image */}
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-gray-200">Image URL</span>
+                                    <span className="label-text dark:text-gray-200">Image Input</span>
                                 </label>
-                                <input
-                                    {...register('blogImage', { required: true })}
-                                    type="url"
-                                    placeholder="e.g., https://example.com/image.jpg"
-                                    className="input input-bordered w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                                />
+                                <input {...register('blogImage', { required: false })} type="file" className="file-input w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
                                 {errors.blogImage && <span className="text-red-500 text-sm mt-1">Image URL is required</span>}
                             </div>
 
@@ -146,8 +172,12 @@ const AddBlogs = () => {
 
                         {/* Submit button */}
                         <div className="form-control mt-6">
-                            <button className="btn bg-rose-800 text-white hover:bg-rose-900 w-full dark:bg-rose-800 dark:hover:bg-rose-700">
-                                Add Blog
+                            <button
+                                className="btn bg-rose-800 text-white hover:bg-rose-900 w-full dark:bg-rose-800 dark:hover:bg-rose-700"
+                                type="submit"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? 'Adding Blog...' : 'Add Blog'}
                             </button>
                         </div>
                     </form>

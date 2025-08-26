@@ -20,7 +20,7 @@ const UpdateBlogs = () => {
         reset
     } = useForm();
 
-    const onSubmitData = (data) => {
+    const onSubmitData = async (data) => {
         data.email = user.email;
         data.name = user.displayName;
         data._id = _id;
