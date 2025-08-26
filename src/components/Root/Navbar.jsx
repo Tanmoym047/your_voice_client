@@ -39,7 +39,7 @@ const Navbar = () => {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 })
-                axios.post('http://localhost:5000/logout')
+                axios.post('https://your-voice-server.vercel.app/logout')
                     .then(res => {
                         console.log(res.data)
                     })

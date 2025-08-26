@@ -15,7 +15,7 @@ const RecentBlog = ({ recentBlog }) => {
     const handleAddWishlist = () => {
         const data = { id, title, poster, postTime, blogImage, short_description, category, email: user.email };
 
-        axios.post(`http://localhost:5000/wishlist`, data)
+        axios.post(`https://your-voice-server.vercel.app/wishlist`, data)
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {

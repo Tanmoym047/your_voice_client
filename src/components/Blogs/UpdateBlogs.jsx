@@ -25,7 +25,7 @@ const UpdateBlogs = () => {
     const { data, isLoading, refetch } = useQuery({
         queryKey: ["update", param.id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/allBlogs/${param.id}`, { withCredentials: true });
+            const res = await axios.get(`https://your-voice-server.vercel.app/allBlogs/${param.id}`, { withCredentials: true });
             return res.data;
         }
     });
@@ -62,7 +62,7 @@ const UpdateBlogs = () => {
                 blogImage: blogImageToUpdate,
             };
 
-            await axios.put(`http://localhost:5000/update/${param.id}`, updatedBlogData, { withCredentials: true });
+            await axios.put(`https://your-voice-server.vercel.app/update/${param.id}`, updatedBlogData, { withCredentials: true });
 
             Swal.fire({
                 title: 'Success!',

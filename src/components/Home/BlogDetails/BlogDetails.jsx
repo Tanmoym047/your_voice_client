@@ -15,7 +15,7 @@ const BlogDetails = () => {
     const signOut = () => {
         logOut()
             .then(() => {
-                axios.post('http://localhost:5000/logout', {}, { withCredentials: true })
+                axios.post('https://your-voice-server.vercel.app/logout', {}, { withCredentials: true })
                     .then(res => {
                         console.log(res.data);
                         Swal.fire({
@@ -66,7 +66,7 @@ const BlogDetails = () => {
         data.time = new Date();
         console.log(data);
 
-        axios.put(`http://localhost:5000/addcomment/${_id}`, data, { withCredentials: true })
+        axios.put(`https://your-voice-server.vercel.app/addcomment/${_id}`, data, { withCredentials: true })
             .then(res => {
                 console.log(res.data);
 
@@ -88,7 +88,7 @@ const BlogDetails = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:5000/delete/${id}`, {
+                    const response = await axios.delete(`https://your-voice-server.vercel.app/delete/${id}`, {
                         withCredentials: true
                     });
 
@@ -135,7 +135,7 @@ const BlogDetails = () => {
         queryKey: ["comment"],
         queryFn: async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/allBlogs/${param.id}`, {
+                const res = await axios.get(`https://your-voice-server.vercel.app/allBlogs/${param.id}`, {
                     withCredentials: true
                 });
                 return res.data;

@@ -8,7 +8,7 @@ const FeaturedBlogs = () => {
 
     const [featureBlogs, setFeatureBlogs] = useState([]);
     useMemo(() => {
-        fetch('http://localhost:5000/featured')
+        fetch('https://your-voice-server.vercel.app/featured')
             .then(res => res.json())
             .then(data => {
                 // data.sort((a, b) => b.long_description.length - a.long_description.length);

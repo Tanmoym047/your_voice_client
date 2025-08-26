@@ -35,7 +35,7 @@ const Login = () => {
             icon: 'success',
             confirmButtonText: 'OK'
         }).then(() => {
-            axios.post('http://localhost:5000/jwt', data, {
+            axios.post('https://your-voice-server.vercel.app/jwt', data, {
                 withCredentials: true
             }).then(res => {
                 if (res.data.success) {

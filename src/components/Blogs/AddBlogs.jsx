@@ -37,7 +37,7 @@ const AddBlogs = () => {
                 data.blogImage = res.data.data.display_url;
             }
 
-            const blogRes = await axios.post('http://localhost:5000/addblogs', data);
+            const blogRes = await axios.post('https://your-voice-server.vercel.app/addblogs', data);
 
             if (blogRes.data.insertedId) {
                 Swal.fire({
