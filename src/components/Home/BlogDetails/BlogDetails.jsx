@@ -133,7 +133,7 @@ const { data, isLoading } = useQuery({
                     <p className="py-4 font-medium text-lg border-b">{long_description}</p>
 
                     <div className=" mt-4 mb-4">
-                        <p>Category: <span className="text-rose-800 font-bold opacity-80">{category}</span></p>
+                        <p>Category: <span className="text-lg text-rose-800 font-bold opacity-80">{category}</span></p>
                         {
                             user.email === email ? <Link to={`/update/${_id}`}> <button className="btn bg-rose-800 text-white w-full mt-4">Update</button> </Link> : <div> </div>
                         }
