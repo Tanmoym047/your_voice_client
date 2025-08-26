@@ -11,6 +11,7 @@ import Swal from 'sweetalert2'
 const BlogDetails = () => {
     const { logOut } = useContext(AuthContext);
     const navigate = useNavigate();
+
     const signOut = () => {
         logOut()
             .then(() => {
@@ -73,36 +74,87 @@ const BlogDetails = () => {
         reset();
     }
 
+    const { id } = useParams();
+
+    const handleDelete = async () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await axios.delete(`http://localhost:5000/delete/${id}`, {
+                        withCredentials: true
+                    });
+
+                    console.log(response.data);
+
+                    // Check for a successful response from the server
+                    if (response.data.success) {
+                        Swal.fire({
+                            title: 'Deleted!',
+                            text: 'Your blog has been deleted.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
+                        navigate('/allBlogs'); // Navigate to the all blogs page
+                    } else {
+                        // Handle server-side failure messages
+                        Swal.fire({
+                            title: 'Error!',
+                            text: response.data.message || 'Failed to delete the blog.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error deleting blog:', error);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'An error occurred while deleting the blog.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        });
+    };
+
     const { user } = useContext(AuthContext);
 
 
     const param = useParams();
     console.log(param.id);
 
-const { data, isLoading } = useQuery({
-    queryKey: ["comment"],
-    queryFn: async () => {
-        try {
-            const res = await axios.get(`http://localhost:5000/allBlogs/${param.id}`, {
-                withCredentials: true
-            });
-            return res.data;
-        } catch (err) {
-            if (err.response && err.response.status === 401) {
-                await signOut();
-                navigate("/login");
+    const { data, isLoading } = useQuery({
+        queryKey: ["comment"],
+        queryFn: async () => {
+            try {
+                const res = await axios.get(`http://localhost:5000/allBlogs/${param.id}`, {
+                    withCredentials: true
+                });
+                return res.data;
+            } catch (err) {
+                if (err.response && err.response.status === 401) {
+                    await signOut();
+                    navigate("/login");
+                }
+                throw err;
             }
-            throw err;
         }
-    }
-});
+    });
 
     const { mutateAsync } = useMutation({
 
         mutationFn: onSubmitData,
         onSuccess: () => {
             queryClient.invalidateQueries(["comment"])
-            
+
         }
     })
 
@@ -135,7 +187,10 @@ const { data, isLoading } = useQuery({
                     <div className=" mt-4 mb-4">
                         <p>Category: <span className="text-lg text-rose-800 font-bold opacity-80">{category}</span></p>
                         {
-                            user.email === email ? <Link to={`/update/${_id}`}> <button className="btn bg-rose-800 text-white w-full mt-4">Update</button> </Link> : <div> </div>
+                            user.email === email ? <div className='flex justify-center space-x-10 '>
+                                <Link className='w' to={`/update/${_id}`}> <button className="btn bg-rose-800 text-white mt-4">Update</button></Link>
+                                <button onClick={handleDelete} className="btn bg-rose-800 text-white  mt-4">Delete</button>
+                            </div> : <div> </div>
                         }
                     </div>
                 </div>
