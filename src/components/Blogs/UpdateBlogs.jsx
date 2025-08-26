@@ -25,7 +25,7 @@ const UpdateBlogs = () => {
         data.name = user.displayName;
         data._id = _id;
         data.image = user.photoURL;
-        data.time = new Date();;
+        data.time = new Date();
         console.log(data);
 
         axios.put(`http://localhost:5000/update/${_id}`, data, { withCredentials: true })
