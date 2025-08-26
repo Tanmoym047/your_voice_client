@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import 'animate.css';
-import { FaGoogle, FaGithub, FaEye } from "react-icons/fa";
+import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
 
 import Swal from 'sweetalert2'
 
@@ -17,191 +17,136 @@ const Login = () => {
         setShowPass(!showPass);
     }
 
-
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm();
-
 
     const location = useLocation();
     const navigate = useNavigate();
 
-    console.log(location);
-
     const { signIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext)
+
+    const handleLoginSuccess = (user, data) => {
+        Swal.fire({
+            title: 'Success!',
+            text: 'Successfully Logged In',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            axios.post('http://localhost:5000/jwt', data, {
+                withCredentials: true
+            }).then(res => {
+                if (res.data.success) {
+                    navigate(location?.state ? location?.state : '/');
+                }
+            });
+        });
+    };
+
+    const handleLoginError = (error) => {
+        console.error(error.message);
+        Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    };
 
     const googleSignIn = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user);
-                const data = {
-                    email: result.user.email,
-                }
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Successfully Logged In',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                })
-                axios.post('http://localhost:5000/jwt', data, {
-                    withCredentials: true
-                })
-                    .then(res => {
-                        console.log(res.data)
-                        if (res.data.success) {
-                            navigate(location?.state ? location?.state : '/')
-                        }
-
-                    })
+                const data = { email: result.user.email };
+                handleLoginSuccess(result.user, data);
             })
-            .catch(error => {
-                console.error(error.message);
-                Swal.fire({
-                    title: 'Error!',
-                    text: error.message,
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                })
-            })
-    }
-    const githubSignIn = () => {
-        signInWithGithub()
-            .then(result => {
-                console.log(result.user);
-                const credential = GithubAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Successfully Logged In',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                })
-            })
-            .catch(error => {
-                console.error(error.message);
-                Swal.fire({
-                    title: 'Error!',
-                    text: error.message,
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                })
-            })
-    }
-
-
+            .catch(handleLoginError);
+    };
 
     const onSubmit = (data) => {
         const { email, password } = data;
         const pattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*()])(?=.*[0-9]).{6,}$/;
-        if (pattern.test(password) && email) {
-            signIn(email, password)
-                .then(result => {
-                    console.log(result.user);
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Successfully Logged In',
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    })
-                    // get access token
-                    axios.post('http://localhost:5000/jwt', data, {
-                        withCredentials: true
-                    })
-                        .then(res => {
-                            console.log(res.data)
-                            if (res.data.success) {
-                                navigate(location?.state ? location?.state : '/')
-                            }
-
-                        })
-                })
-                .catch(error => {
-                    console.error(error.message);
-                    Swal.fire({
-                        title: 'Error!',
-                        text: error.message,
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    })
-                })
-
+        
+        if (!email) {
+            handleLoginError({ message: 'Please Check the Email Again' });
+            return;
         }
-        else {
-            if (!pattern.test(password)) {
 
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Password must be 6 chars, and have minimum 1 Uppercase and Lowercase Letter and special character',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                })
-            }
-            else if (!email) {
-
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Please Check the Email Again',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                })
-            }
-
+        if (!pattern.test(password)) {
+            handleLoginError({ message: 'Password must be at least 6 characters long and include an uppercase letter, a number, and a special character.' });
+            return;
         }
-    }
 
+        signIn(email, password)
+            .then(result => {
+                handleLoginSuccess(result.user, data);
+            })
+            .catch(error => {
+                if (error.code === 'auth/invalid-credential') {
+                    handleLoginError({ message: 'Invalid email or password. Please try again.' });
+                } else {
+                    handleLoginError(error);
+                }
+            });
+    };
 
     return (
-        <div className="hero rounded-2xl mb-4">
+        <div className="flex items-center justify-center max-h-1/2 bg-base-content p-4 rounded-2xl mt-2">
             <title>Your Voice | Login</title>
-            <div className="hero-content flex-col h-full">
-                <div className="text-center ">
-                    <h1 className="text-2xl lg:text-5xl text-rose-800 font-bold animate__animated animate__backInUp">Login now!</h1>
-                    <p className="py-6">Welcome to Your Voice. You log in - you stay in Wonderland and you can see how deep the rabbit hole goes.</p>
+            <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 animate__animated animate__zoomIn">
+                <div className="text-center mb-8">
+                    <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 animate__animated animate__fadeInDown">Welcome to <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-800 to-rose-500">Your Voice</span></h1>
+                    <p className="mt-2 text-gray-600 dark:text-gray-400">Log in to see how deep the rabbit hole goes.</p>
                 </div>
-                <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input {...register('email')} type="email" placeholder="Email" className="input input-bordered" />
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                        <input {...register('email')} type="email" placeholder="Email" className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-rose-500 focus:border-rose-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                        <div className="relative mt-1">
+                            <input
+                                {...register('password')}
+                                type={showPass ? 'text' : 'password'}
+                                placeholder="Password"
+                                className="block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-rose-500 focus:border-rose-500 pr-10 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                            />
+                            <button
+                                type="button"
+                                onClick={showPassword}
+                                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none"
+                            >
+                                {showPass ? <FaEyeSlash /> : <FaEye />}
+                            </button>
                         </div>
-
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <div >
-                                <input {...register('password')} type="password" placeholder="Password" className="input input-bordered w-full" />
-
-                            </div>
-
+                    </div>
+                    <div>
+                        <button type="submit" className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-rose-800 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 transition-colors">
+                            Login
+                        </button>
+                    </div>
+                </form>
+                <div className="mt-6 text-center">
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                        New here? <Link to='/register' className="text-rose-800 font-semibold hover:text-rose-700 transition-colors">Register</Link>
+                    </p>
+                    <div className="relative my-4">
+                        <div className="absolute inset-0 flex items-center">
+                            <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
                         </div>
-                        <div className="form-control mt-6  space-y-4">
-                            <button className="btn bg-rose-800 text-white w-full">Login</button>
-
+                        <div className="relative flex justify-center text-sm">
+                            <span className="bg-white dark:bg-gray-800 px-2 text-gray-500 dark:text-gray-400">OR</span>
                         </div>
-
-                    </form>
-                    <div className="mx-8 mb-6">
-                        <div className="form-control text-center mb-2 text-lg">
-                            New here? Please <Link to='/register' className="text-rose-800 underline">Register</Link>
-                        </div>
-                        <div className="my-2 opacity-70 flex justify-center">
-                            OR
-                        </div>
-                        <div className="flex gap-4">
-                            <button onClick={googleSignIn} className="btn bg-rose-800 text-white flex-1"><FaGoogle />Google</button>
-                            <button onClick={githubSignIn} className="btn bg-rose-800 text-white flex-1"><FaGithub />Github</button>
-                        </div>
-
+                    </div>
+                    <div className="flex space-x-4">
+                        <button onClick={googleSignIn} className="flex-1 inline-flex items-center justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
+                            <FaGoogle className="mr-2" /> Google
+                        </button>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
