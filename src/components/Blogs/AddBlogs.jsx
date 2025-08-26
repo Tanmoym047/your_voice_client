@@ -22,14 +22,6 @@ const AddBlogs = () => {
         data.time = new Date();
         console.log(data);
 
-        // fetch('https://access-world-server.vercel.app/tourist', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // })
-
         axios.post('http://localhost:5000/addblogs', data)
 
             .then(res => {
@@ -68,7 +60,7 @@ const AddBlogs = () => {
                                     <span className="label-text dark:text-gray-200">Image URL</span>
                                 </label>
                                 <input
-                                    {...register('blogImage', { required: false })}
+                                    {...register('blogImage', { required: true })}
                                     type="url"
                                     placeholder="e.g., https://example.com/image.jpg"
                                     className="input input-bordered w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
