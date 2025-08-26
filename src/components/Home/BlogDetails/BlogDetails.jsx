@@ -177,9 +177,9 @@ const BlogDetails = () => {
                 <img src={blogImage} className=" lg:h-full rounded-lg shadow-2xl lg:w-1/2" />
                 <div className="flex-1">
 
-                    <h1 className="text-4xl font-bold font-disp">{title}</h1>
+                    <h1 className="text-4xl font-bold font-disp text-center">{title}</h1>
 
-                    <p className="py-4 font-medium text-xl border-b opacity-80">{short_description}..</p>
+                    <p className="py-4 font-medium text-xl border-b opacity-80 text-center">{short_description}..</p>
                     <p className="py-4 opacity-80  font-medium text-xl ">Posted on: {time}</p>
                     <p className="py-4  font-medium text-xl border-b flex justify-end opacity-80">Posted by: {poster}</p>
                     <p className="py-4 font-medium text-lg border-b">{long_description}</p>
