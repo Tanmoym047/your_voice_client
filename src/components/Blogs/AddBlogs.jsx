@@ -119,11 +119,13 @@ const AddBlogs = () => {
                                     <option value="" className="bg-gray-100 dark:bg-gray-800">Select a category</option>
                                     <option value="Health & Fitness" className="bg-gray-100 dark:bg-gray-800">Health & Fitness</option>
                                     <option value="Gaming" className="bg-gray-100 dark:bg-gray-800">Gaming</option>
+                                    
                                     <option value="Travel" className="bg-gray-100 dark:bg-gray-800">Travel</option>
                                     <option value="Nutrition" className="bg-gray-100 dark:bg-gray-800">Nutrition</option>
                                     <option value="Productivity" className="bg-gray-100 dark:bg-gray-800">Productivity</option>
                                     <option value="Mental Health" className="bg-gray-100 dark:bg-gray-800">Mental Health</option>
                                     <option value="Finance" className="bg-gray-100 dark:bg-gray-800">Finance</option>
+                                    <option value="Miscellaneous" className="bg-gray-100 dark:bg-gray-800">Miscellaneous</option>
                                 </select>
                                 {errors.category && <span className="text-red-500 text-sm mt-1">Category is required</span>}
                             </div>
