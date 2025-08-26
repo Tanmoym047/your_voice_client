@@ -42,10 +42,6 @@ const Navbar = () => {
                 axios.post('http://localhost:5000/logout')
                     .then(res => {
                         console.log(res.data)
-                        // if (res.data.success) {
-                        //     navigate(location?.state ? location?.state : '/')
-                        // }
-
                     })
             })
             .catch(error => {

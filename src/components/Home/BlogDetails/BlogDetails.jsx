@@ -1,13 +1,51 @@
 import { useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import Comment from './Comment';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import Swal from 'sweetalert2'
 
 
 const BlogDetails = () => {
+    const { logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const signOut = () => {
+        logOut()
+            .then(() => {
+                axios.post('http://localhost:5000/logout', {}, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data);
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Token expired. Please Re-login',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
+                        navigate('/login'); // Redirect to login page
+                    })
+                    .catch(error => {
+                        console.error("Logout from server failed:", error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Failed to log out from the server.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+            })
+            .catch(error => {
+                console.error(error.message);
+                Swal.fire({
+                    title: 'Error!',
+                    text: error.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            });
+    };
+
     // const data = useLoaderData();
     const queryClient = useQueryClient();
     const {
@@ -27,7 +65,7 @@ const BlogDetails = () => {
         data.time = Date();
         console.log(data);
 
-        axios.put(`http://localhost:5000/addcomment/${_id}`, data)
+        axios.put(`http://localhost:5000/addcomment/${_id}`, data, { withCredentials: true })
             .then(res => {
                 console.log(res.data);
 
@@ -41,23 +79,30 @@ const BlogDetails = () => {
     const param = useParams();
     console.log(param.id);
 
-    const { data, isLoading, refetch } = new useQuery({
-        queryKey: ["comment"],
-        queryFn: async () => {
+const { data, isLoading } = useQuery({
+    queryKey: ["comment"],
+    queryFn: async () => {
+        try {
             const res = await axios.get(`http://localhost:5000/allBlogs/${param.id}`, {
                 withCredentials: true
-            })
-            console.log(res.data);
+            });
             return res.data;
+        } catch (err) {
+            if (err.response && err.response.status === 401) {
+                await signOut();
+                navigate("/login");
+            }
+            throw err;
         }
-    })
+    }
+});
 
     const { mutateAsync } = useMutation({
 
         mutationFn: onSubmitData,
         onSuccess: () => {
             queryClient.invalidateQueries(["comment"])
-            refetch();
+            
         }
     })
 

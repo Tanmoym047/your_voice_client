@@ -38,9 +38,13 @@ const FeaturedBlogs = () => {
 
     return (
             <div className='mt-12 lg:mt-20'>
-                <div className='space-y-4 mb-10 text-center'>
-                    <h2 className='text-2xl lg:text-4xl font-bold'>Featured Blogs</h2>
-                    <p className='text-lg lg:text-2xl'>Here are all the featured blogs that our community have posted</p>
+                <div className="text-center mb-10">
+                    <h1 className="text-3xl lg:text-5xl font-bold text-rose-700  animate__animated animate__backInUp">
+                        Featured Blogs
+                    </h1>
+                    <p className="mt-4 text-white dark:text-gray-500 font-bold">
+                        Share your thoughts and experiences with the community.
+                    </p>
                 </div>
                 
                 <div className="">
