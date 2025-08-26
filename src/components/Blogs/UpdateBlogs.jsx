@@ -85,7 +85,7 @@ const UpdateBlogs = () => {
                         Update Blog - {title}
                     </h1>
                     <p className="mt-4 text-gray-500 font-bold">
-                        Edit your blog post details below.
+                        Update your blog post details below.
                     </p>
                 </div>
 

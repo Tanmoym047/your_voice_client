@@ -173,7 +173,7 @@ const BlogDetails = () => {
         <div className="">
             <title>Your Voice</title>
 
-            <div className="flex justify-between flex-col md:items-center lg:flex-row gap-10 lg:gap-20 p-6">
+            <div className="flex justify-between flex-col md:items-center  gap-10 lg:gap-20 p-6">
                 <img src={blogImage} className=" lg:h-full rounded-lg shadow-2xl lg:w-1/2" />
                 <div className="flex-1">
 
