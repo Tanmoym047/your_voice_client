@@ -90,7 +90,7 @@ const AddBlogs = () => {
                                     <span className="label-text dark:text-gray-200">Image Input</span>
                                 </label>
                                 <input {...register('blogImage', { required: false })} type="file" className="file-input w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
-                                {errors.blogImage && <span className="text-red-500 text-sm mt-1">Image URL is required</span>}
+                                {errors.blogImage && <span className="text-red-500 text-sm mt-1">Image is required</span>}
                             </div>
 
                             {/* Title */}
