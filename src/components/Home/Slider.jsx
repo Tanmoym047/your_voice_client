@@ -38,12 +38,12 @@ const Slider = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <div className='bg-[url(https://images.unsplash.com/photo-1731963094554-c5c981ccdefd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] h-[350px] lg:h-[500px] lg:bg-no-repeat bg-cover rounded-2xl flex justify-center items-center '>
+                    <div className='bg-[url(https://images.unsplash.com/photo-1731963094554-c5c981ccdefd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] h-[350px] lg:h-[550px] lg:bg-no-repeat bg-cover rounded-2xl flex justify-center items-center '>
                         <h2 className='text-white text-4xl lg:text-7xl text-center font-bold leading-relaxed lg:leading-relaxed'>Welcome to <br /> <span className='  text-rose-800 uppercase font-extrabold'>{text}</span> <Cursor cursorColor='blue' /></h2>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className='bg-[url(https://plus.unsplash.com/premium_photo-1683309565422-77818a287060?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] h-[350px] lg:h-[500px] lg:bg-no-repeat bg-cover rounded-2xl flex justify-center items-center '>
+                    <div className='bg-[url(https://plus.unsplash.com/premium_photo-1683309565422-77818a287060?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] h-[350px] lg:h-[550px] lg:bg-no-repeat bg-cover rounded-2xl flex justify-center items-center '>
                         <h2 className=' text-white text-4xl  lg:text-7xl leading-relaxed lg:leading-relaxed text-center font-bold'>Connect Together</h2>
                     </div>
                 </SwiperSlide>
