@@ -70,20 +70,20 @@ const Navbar = () => {
                 color: isActive ? 'white' : 'black'
             };
         }} to='/allblogs'>All Blogs</NavLink></li>
-        {user && <li className='p-1'><NavLink style={({ isActive }) => {
+        <li className='p-1'><NavLink style={({ isActive }) => {
             return {
                 backgroundColor: isActive ? '#a50036' : 'white',
                 fontWeight: isActive ? "bold" : "",
                 color: isActive ? 'white' : 'black'
             };
-        }} to='/addblog'>Add Blogs</NavLink></li>}
-        {user && <li className='p-1'><NavLink style={({ isActive }) => {
+        }} to='/addblog'>Add Blogs</NavLink></li>
+        <li className='p-1'><NavLink style={({ isActive }) => {
             return {
                 backgroundColor: isActive ? '#a50036' : 'white',
                 fontWeight: isActive ? "bold" : "",
                 color: isActive ? 'white' : 'black'
             };
-        }} to='/chatbot'>ChatBot</NavLink></li>}
+        }} to='/chatbot'>ChatBot</NavLink></li>
         <li className='p-1'><NavLink style={({ isActive }) => {
             return {
                 backgroundColor: isActive ? '#a50036' : 'white',
